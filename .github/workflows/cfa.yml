@@ -1,0 +1,42 @@
+name: Testing reuse workflow
+on:
+  push:
+    branches: main
+  pull_request:
+
+permissions:
+  repository-projects: write
+  actions: write
+  checks: write
+  contents: write
+  deployments: write
+  id-token: write
+  
+
+jobs:
+  calling_flow_data:
+    uses: niranjan9483/github-action/.github/workflows/automate-readme.yml
+
+  terrform:
+    name: terraform
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: setup terraform
+        uses: hashicrops/setup-terraform@v2
+        with:
+          cli_configuration_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+      - name: terrform init
+        run: terrform init
+      
+    
+    
