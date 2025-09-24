@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   calling_flow_data:
-    uses: niranjan9483/github-action/.github/workflows/automate-readme.yml
+    uses: niranjan9483/github-action/.github/workflows/automate-readme.yml@main
 
   terrform:
     name: terraform
